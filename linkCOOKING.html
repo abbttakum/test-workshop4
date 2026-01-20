@@ -1,1 +1,354 @@
 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สูตรอาหาร</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+        
+        :root {
+            --primary-color: #4082a0; 
+            --secondary-color: #FFC107; 
+            --dark-color: #333;
+            --light-color: #fff;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--light-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://www.chillpainai.com/src/wewakeup/scoop/images/82d778fd33294436e35c772ab913e50a3db91a4e.JPG') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-color);
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* คาเฟ่แนะนำ */
+        .cafe-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .cafe-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .cafe-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            display: inline-block;
+        }
+
+        .cafe-block {
+            display: flex;
+            flex-wrap: wrap;
+            background: #fff;
+            margin-bottom: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cafe-text, .cafe-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cafe-text {
+            padding: 30px;
+        }
+
+        .cafe-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .cafe-text p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .cafe-text a {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .cafe-text a:hover {
+            background: var(--secondary-color);
+        }
+
+        .cafe-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .cafe-block {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+<!-- แนะนำ -->
+<section class="cafe-section">
+    <div class="cafe-title">
+        <h2>สูตรอาหาร</h2>
+    </div>
+
+    <div class="cafe-block">
+        <div class="cafe-text">
+            <h3>1.บราวนี่ช็อกโกแลต</h3>
+            <p>ขั้นตอนการทำ:ละลายช็อกโกแลตกับเนย ผสมไข่และน้ำตาล ใส่แป้งและผงโกโก้ คนให้เข้ากัน เทใส่พิมพ์แล้วอบจนสุก </p>
+            
+            <ul class="cafe-info">
+                <li><strong>วัตถุดิบ:แป้งสาลี, ผงโกโก้, ช็อกโกแลต, เนย, ไข่ไก่, น้ำตาล</strong> </li>
+            </ul>
+
+            
+        </div>
+        <div class="cafe-img">
+            <img src="https://www.pholfoodmafia.com/wp-content/uploads/2017/03/1000DoubleChocolateBrownies.jpg" alt="Lanna Coffee">
+        </div>
+    </div>
+
+    <div class="cafe-block">
+        <div class="cafe-text">
+            <h3>2.แพนเค้ก</h3>
+            <p>ขั้นตอนการทำ:ผสมส่วนผสมทั้งหมดให้เข้ากัน ตั้งกระทะทาเนย เทแป้งลงทอดจนเหลืองทั้งสองด้าน </p>
+            
+            <ul class="cafe-info">
+                <li><strong>วัตถุดิบ:แป้งสาลี, ไข่ไก่, นมสด, น้ำตาล, เนย</strong> </li>
+            </ul>
+
+            
+        </div>
+        <div class="cafe-img">
+            <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/8/2022/08/18121010/e0b8a3e0b989e0b8b2e0b899e0b981e0b89ee0b899e0b980e0b884e0b989e0b881e0b881e0b8a3e0b8b8e0b887e0b980e0b897e0b89e_b.jpeg" alt="Lanna Coffee">
+        </div>
+    </div>
+    
+    <div class="cafe-block">
+        <div class="cafe-text">
+            <h3>3.วุ้นกะทิ</h3>
+            <p>ขั้นตอนการทำ:ต้มผงวุ้นกับน้ำจนละลาย ใส่น้ำตาลและกะทิ คนให้เข้ากัน เทใส่พิมพ์แล้วพักให้เซ็ตตัว </p>
+            
+            <ul class="cafe-info">
+                <li><strong>วัตถุดิบ:ผงวุ้น, กะทิ, น้ำตาล, น้ำเปล่า</strong> </li>
+            </ul>
+
+            
+        </div>
+        <div class="cafe-img">
+            <img src="https://patternpack.org/wp-content/uploads/2021/10/pandan-2.jpg" alt="Lanna Coffee">
+        </div>
+    </div>
+    
+    <div class="cafe-block">
+        <div class="cafe-text">
+            <h3>4.ไอศกรีมกะทิ</h3>
+            <p>ขั้นตอนการทำ:ผสมกะทิกับน้ำตาลและเกลือ แช่ช่องฟรีซ คอยคนทุก 30 นาทีจนเนื้อเนียน โรยถั่วก่อนเสิร์ฟ </p>
+            
+            <ul class="cafe-info">
+                <li><strong>วัตถุดิบ:กะทิ, น้ำตาล, เกลือ, ถั่วลิสง</strong> </li>
+            </ul>
+
+            
+        </div>
+        <div class="cafe-img">
+            <img src="https://f.ptcdn.info/793/068/000/q85qktiw3BshCHqVKQD-o.jpg" alt="Lanna Coffee">
+        </div>
+    </div>
+
+    <div class="cafe-block">
+        <div class="cafe-text">
+            <h3>5.กล้วยบวชชี</h3>
+            <p>ขั้นตอนการทำ:ต้มกล้วยกับกะทิ ใส่น้ำตาลและเกลือ เคี่ยวจนกล้วยนุ่มและน้ำกะทิหอมมัน </p>
+            
+            <ul class="cafe-info">
+                <li><strong>วัตถุดิบ:กล้วยน้ำว้า, กะทิ, น้ำตาล, เกลือ</strong> </li>
+            </ul>
+
+            
+        </div>
+        <div class="cafe-img">
+            <img src="https://s359.kapook.com/pagebuilder/8a3fba92-b3f6-4754-ac9b-18e02a923252.jpg" alt="Lanna Coffee">
+        </div>
+    </div>
+</section>
+
+<style>
+    .cafe-block {
+        display: flex;
+        flex-wrap: wrap;
+        background: #fff;
+        margin-bottom: 40px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .cafe-text, .cafe-img {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .cafe-text {
+        padding: 30px;
+    }
+
+    .cafe-img {
+        height: 300px;
+        width: 100%;
+    }
+
+    .cafe-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .cafe-info {
+        list-style: none;
+        padding: 0;
+        margin: 15px 0;
+    }
+
+    .cafe-info li {
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: #444;
+    }
+
+    .cafe-info strong {
+        color: #000;
+    }
+
+    @media (max-width: 768px) {
+        .cafe-block {
+            flex-direction: column;
+        }
+        .cafe-img {
+            height: 250px;
+        }
+    }
+</style>
+
+
+</body>
+</html>
+
